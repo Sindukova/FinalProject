@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Materials>
+<h2>Material</h2>
+<style>
+
+body { 
+    background-image: url('https://images.unsplash.com/photo-1586074299757-dc655f18518c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80'); 
+       background-repeat: repeat;
+       background-size: auto; 
+       color:white; 
+}
+</style>
+
+@using (Html.BeginForm("Search", "Materials", FormMethod.Get))
+{
+    <p>
+        Find by name: @Html.TextBox("searchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+@*<div style="display: block">
+    <a href="/Materials/InsertMaterial/">Create new material</a>
+</div>*@
+
+<table class="table">
+    <tr>
+        <th>Category Id</th>
+        <th>Name</th>
+        <th>Residential pick up</th>
+        <th>Drop off</th>
+        <th>Instructions</th>
+        
+    </tr>
+    @foreach (var material in Model)
+    {
+<tr>
+    <td><a href=/Materials/ViewMaterial/@material.id_materials>@material.id_materials</a></td>
+ 
+    <td><a href=/Materials/ViewMaterial/@material.name>@material.name</a></td>
+    <td>@material.residential_pickup</td>
+    <td>@material.drop_off</td>
+    <td>@material.instructions</td>
+</tr>
+    }
+</table>
